@@ -308,19 +308,19 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
 
         <section class="slide">
           <h1>Design Techniques</h1>
-          <ul>
-            <li>Colocation: OS extensions are dynamically linked into the kernel virtual
-              address space
-            </li>
-            <li>Enforced modularity: extensions cannot accesss memory or execute
-              instruction unless explicitly given access via an interface
-            </li>
-            <li>Logical protetion domains: kernel namespaces containing code and exported
-              interfaces resolved by an in-kernel linker
-            </li>
-            <li>Dynamic call binding: extensions execute in response to system events
-            </li>
-          </ul>
+          <dl>
+            <dt>Colocation</dt>
+            <dd>OS extensions are dynamically linked into the kernel virtual
+              address space</dd>
+            <dt>Enforced modularity</dt>
+            <dd>Extensions cannot accesss memory or execute
+              instruction unless explicitly given access via an interface</dd>
+            <dt>Logical protetion domains</dt>
+            <dd>Kernel namespaces containing code and exported
+              interfaces resolved by an in-kernel linker</dd>
+            <dt>Dynamic call binding</dt>
+            <dd>Extensions execute in response to system events</dd>
+          </dl>
         </section>
         
         <section class="slide">
