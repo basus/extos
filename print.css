@@ -17,13 +17,13 @@ body {
     display: none;
 }
 .slide {
-    width: 45%;
-    height: 260px;
+    width: 47%;
+    height: 220px;
     float: left;
     border: 2px solid #000000;
-    margin: 1.5%;
+    margin: 1%;
     font-family: Georgia;
-    font-size: 0.6em;
+    font-size: 0.5em;
     line-height: 1.2em;
 }
 
@@ -47,6 +47,21 @@ body {
 
 .slide ul li {
     margin-bottom:0.5em;
+}
+.slide dl {
+    width: 80%;
+    margin: auto;
+}
+
+.slide dt {
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+    margin-bottom: 0.25em;
+}
+
+.slide dd {
+    margin-bottom:0.5em;
+    font-size: 0.5em;
 }
 
 .slide blockquote {
