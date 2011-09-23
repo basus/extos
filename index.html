@@ -55,7 +55,7 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
 
         <section class="slide">
           <h1>What Can We Do?</h1>
-          <ul>
+          <dl>
             <dt>Virtualization</dt>
                 <dd>Multiple guest operating systems inside a guest OS</dd>
             <dt>Microkernels</dt>
@@ -64,7 +64,7 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
                 <dd>Expose hardware resources as directly as possible</dd>
             <dt>Extensible Kernels</dt>
                 <dd>Allow guaranteed safe components into the kernel</dd>
-          </ul>
+          </dl>
         </section>
 
         <section class="slide">
@@ -142,35 +142,37 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
 
         <section class="slide">
           <h1>Exokernel Design Principles</h1>
-          <ul>
-            <li>Securely expose hardware &mdash; allow all hardware resources to be
-            accessed as directly as possible.</li>
+          <dl>
+            <dt>Securely expose hardware</dt>
+            <dd>Allow hardware resources to be accessed as directly as
+            possible.</dd>
 
-            <li>Expose allocation &mdash; allow libOS to request specific
-            physical resources</li>
+            <dt>Expose allocation</dt>
+            <dd>Allow libOS to request specific physical resources</dd>
 
-            <li>Expose names &mdash; export physical names thus removing a level
-            of indirection</li>
+            <dt>Expose names</dt>
+            <dd>Export physical names removing a level of indirection</dd>
 
-            <li>Expose revocation &mdash; well-behaved libOS can perform
-            effective application-level resource management </li>
-          </ul>
+            <dt>Expose revocation</dt>
+            <dd>Well-behaved libOS can perform effective application-level resource management</dd>
+          </dl>
         </section>
 
         <section class="slide">
           <h1>Exokernel Design Techniques</h1>
-          
-          <ul>
-            <li>Secure bindings allow libOS to securely bind to machine resources
-              (multiplexing memory and the network)
-            </li>
-            <li>Visible revocation allows libOS to participate in resource revocation
-            </li>
-            <li>Abort protocol to break secure bindings of uncooperative libOS by force
-            </li>
-            <li>Downloading code into the kernel for performance and bounding
-            </li>
-          </ul>
+         <dl>
+            <dt>Secure bindings </dt>
+            <dd>Allow libOS to securely bind to machine resources</dd>
+
+            <dt>Visible revocation </dt>
+            <dd>Allow libOS to participate in resource revocation</dd>
+
+            <dt>Abort protocol </dt>
+            <dd>Break secure bindings of uncooperative dtbOS by force</dd>
+
+            <dt>Downloading code</dt>
+            <dd>Downloading code into the kernel for performance and bounding</dd>
+          </dl>
 
         </section>
 
@@ -202,7 +204,7 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
             <li><code>FPUmod</code> &mdash; Enable or disable FPU</li>
             <li><code>CIDswitch</code> &mdash; Install context identifier</li>
             <li><code>TLBvadelete</code> &mdash; Delete virtual address from TLB</li>
-         </ul>
+          </ul>
         </section>
 
         <section class="slide">
@@ -218,21 +220,21 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
         <section class="slide">
           <h1>ExOS: Abstractions</h1>
           <ul>
-            <li>IPC Abstractions &mdash; built atop of protected control
-            transfer mechanisms</li>
+            <dt>IPC Abstractions</dt>
+            <dd>built atop of protected control
+              transfer mechanisms</dd>
 
-            <li>Application-level Virtual Memory &mdash; aliasing, sharing,
-            caches, page allocation and DMA</li>
+            <dt>Application-level Virtual Memory</dt>
+            <dd>aliasing, sharing, caches, page allocation and DMA</dd>
 
-            <li>Application-Specific Safe Handlers &mdash; untrusted
-            message-handlers downloaded into kernel and verified via inspection
-            and sandboxing</li>
+            <dt>Appdtcation-Specific Safe Handlers</dt>
+            <dd>untrusted message-handlers downloaded into kernel and verified
+              via inspection and sandboxing</dd>
 
-            <li>Favorable performance as compared to Ultrix UNIX implementation</li>
           </ul>
         </section>
 
-        <section class="slide">
+       <section class="slide">
           <h1>ExOS: Extensibility</h1>
           <ul>
             <li>Remote Procedure Call &mdash; server managed registers</li>

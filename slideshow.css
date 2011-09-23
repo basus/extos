@@ -187,6 +187,12 @@ body.three-d div.slides {
     margin-left: 2em;
 }
 
+.slide dl {
+    line-height:1.5em;
+    font-size: 130%;
+    margin: 1em 10% 2em 10%;
+}
+
 .slide dt {
     list-style-type: disc;
     font-weight: bold;
