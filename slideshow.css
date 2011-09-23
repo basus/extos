@@ -187,6 +187,16 @@ body.three-d div.slides {
     margin-left: 2em;
 }
 
+.slide dt {
+    list-style-type: disc;
+    font-weight: bold;
+    font-family: "Droid Sans";
+}
+
+.slide dd {
+    margin-bottom: 1em;
+}
+
 h2:first-child {
     margin-top: 0;
 }

@@ -38,6 +38,52 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
         </section>
 
         <section class="slide">
+          <h1>Why Extensible Operating Systems?</h1>
+          <ul>
+            <li>Appel and Li &mdash; general purpose VM primitives impact
+            peristent stores, GC and distributed shared memory</li>
+            <li>Cao et al. &mdash; application control over file caching
+            reduces running time by 45%.</li>
+            <li>Harty and Cheriton and Krueger et al. &mdash; app-specific VM
+            policies increase performance</li>
+            <li>Stonebraker &mdash; file-system implementations affect database
+            performance</li>
+            <li>Thekkath and Levy &mdash; exceptions made order of magnitude
+            faster by deferring to applications</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>What Can We Do?</h1>
+          <ul>
+            <dt>Virtualization</dt>
+                <dd>Multiple guest operating systems inside a guest OS</dd>
+            <dt>Microkernels</dt>
+                <dd>Provide the minimum amount of kernel mechanisms</dd>
+            <dt>Exokernels</dt>
+                <dd>Expose hardware resources as directly as possible</dd>
+            <dt>Extensible Kernels</dt>
+                <dd>Allow guaranteed safe components into the kernel</dd>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>Exokernels vs Extensible Kernels</h1>
+          <h2>Exokernels</h2>
+          <ul>
+            <li>Expose underlying hardware functionality</li>
+            <li>Kernel provides resource protection, not management</li>
+            <li>We'll look at Aegis and ExOS</li>
+          </ul>
+          <h2>Extensible Kernels</h2>
+          <ul>
+            <li>Provide a safe extension infrastructure</li>
+            <li>Provide a core set of extensible services</li>
+            <li>We'll look at SPIN</li>
+          </ul>
+        </section>
+
+        <section class="slide">
           <header class="middle">
             <h1>Exokernel: An Operating System Architecture for Application-Level Resource Management</h1>
             <h2>Dawson R. Engler <br /> M. Frans Kaashoek <br /> James O'Toole</h2>
@@ -76,7 +122,7 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
           </ul>
         </section>
 
-        <section class="slide">
+       <section class="slide">
           <h1>The Solution</h1>
           <ul>
             <li>Provide application level management of physical resources separating
