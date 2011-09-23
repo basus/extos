@@ -1,0 +1,344 @@
+<!DOCTYPE html> 
+<!--
+Based on original slides by:
+
+Original slides: Marcin Wichary (mwichary@google.com)
+Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
+  Further modifications by Shrutarshi Basu
+  -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+
+    <title>Extensible Operating Systems</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono'
+          rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="slideshow.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="print.css" type="text/css" media="print" />
+    <script type="text/javascript" src="slideshow.js"></script>
+    <script type="text/javascript" src="xhr.js"></script>
+    <script type="text/javascript" src="hello.js"></script>
+    
+  </head> 
+  <body onload="js()"> 
+    <div class="presentation"> 
+      <div id="presentation-counter"></div>
+
+
+      <div class="slides">
+        <section class="slide">
+          <header class="middle">
+            <h1>Extensible Operating Systems</h1>
+            <h2>Shrutarshi Basu</h2>
+          </header>
+        </section>
+
+        <section class="slide">
+          <header class="middle">
+            <h1>Exokernel: An Operating System Architecture for Application-Level Resource Management</h1>
+            <h2>Dawson R. Engler <br /> M. Frans Kaashoek <br /> James O'Toole</h2>
+            <h3>MIT Laboratory for Computer Science</h3>
+          </header>
+        </section>
+
+        <section class="slide">
+          <h1>The People</h1>
+          <h2>Dawson R. Engler</h2>
+          <ul>
+            <li>MIT &rarr; Stanford (EE and CS)</li>
+            <li>ACM Grace Hopper Award &amp; SIGOPS Mark Weiser Award</li>
+            <li>"If you know how to hack, we should meet."</li>
+          </ul>
+          <h2>M. Frans Kaashoek</h2>
+          <ul>
+            <li>Vrije Universiteit &rarr; MIT EECS (CSAIL)</li>
+            <li>NSF Young Investigator Award &amp; SIGOPS Mark Weiser Award</li>
+          </ul>
+          <h2>James O'Toole Jr.</h2>
+          <ul>
+            <li>???</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>The Problem</h1>
+          <ul>
+            <li>Traditional OS limit performance, flexibility and functionality of
+              applications by fixing the interface and implementation of OS abstractions</li>
+            <li>Denies the advantages of domain-specific optimizations</li>
+            <li>discourages changes to implementations of existing
+              abstractions</li>
+            <li>restricts the flexibility of application builders</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>The Solution</h1>
+          <ul>
+            <li>Provide application level management of physical resources separating
+              resource protection from management</li>
+            <li>Exports all hardware resources through a low-level interface to untrusted
+              "library operating systems"
+            </li>
+            <li>Library operating systems implement system objects and policies
+            </li>
+
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>The "End-to-end" argument</h1>
+          <blockquote>
+            "The exokernel architecture is founded on and motivated by a single,
+            simple and old observation: the lower the level of a primitive, the more
+            efficiently it can be implemented, and the more latitude it grants to
+            implementors of higher-level abstractions".
+          </blockquote>
+        </section>
+
+        <section class="slide">
+          <h1>Exokernel Design Principles</h1>
+          <ul>
+            <li>Securely expose hardware &mdash; allow all hardware resources to be
+            accessed as directly as possible.</li>
+
+            <li>Expose allocation &mdash; allow libOS to request specific
+            physical resources</li>
+
+            <li>Expose names &mdash; export physical names thus removing a level
+            of indirection</li>
+
+            <li>Expose revocation &mdash; well-behaved libOS can perform
+            effective application-level resource management </li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>Exokernel Design Techniques</h1>
+          
+          <ul>
+            <li>Secure bindings allow libOS to securely bind to machine resources
+              (multiplexing memory and the network)
+            </li>
+            <li>Visible revocation allows libOS to participate in resource revocation
+            </li>
+            <li>Abort protocol to break secure bindings of uncooperative libOS by force
+            </li>
+            <li>Downloading code into the kernel for performance and bounding
+            </li>
+          </ul>
+
+        </section>
+
+        <section class="slide">
+          <h1>Case Studies</h1>
+          <ul>
+            <li>Aegis: an exokernel supporting some system calls and "primitive operations"
+            </li>
+            <li>ExOS: A libOS implementing IPC, VM and remote comm at an application level
+            </li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>Aegis: System Call Interface</h1>
+          <ul>
+            <li><code>Yield</code> &mdash; Yield processor to named process</li>
+            <li><code>Scall</code> &mdash; Synchronous protected control transfer</li>
+            <li><code>Acall</code> &mdash; Asynchronous protected control transfer</li>
+            <li><code>Alloc</code> &mdash; Allocation of resources</li>
+            <li><code>Dealloc</code> &mdash; Deallocation of resources</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>Aegis: Primitive Operations</h1>
+          <ul>
+            <li><code>TLBwr</code> &mdash; Insert Mapping into TLB</li>
+            <li><code>FPUmod</code> &mdash; Enable or disable FPU</li>
+            <li><code>CIDswitch</code> &mdash; Install context identifier</li>
+            <li><code>TLBvadelete</code> &mdash; Delete virtual address from TLB</li>
+         </ul>
+        </section>
+
+        <section class="slide">
+          <h1>Aegis: Resource Access</h1>
+          <ul>
+            <li>Processor time slices &mdash; CPU resources</li>
+            <li>Exception contexts &mdash; dispatch hardware exceptions to applications</li>
+            <li>Address translations &mdash; virtual memory</li>
+            <li>Protected Control Translations &mdash; substrate for IPC abstractions</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>ExOS: Abstractions</h1>
+          <ul>
+            <li>IPC Abstractions &mdash; built atop of protected control
+            transfer mechanisms</li>
+
+            <li>Application-level Virtual Memory &mdash; aliasing, sharing,
+            caches, page allocation and DMA</li>
+
+            <li>Application-Specific Safe Handlers &mdash; untrusted
+            message-handlers downloaded into kernel and verified via inspection
+            and sandboxing</li>
+
+            <li>Favorable performance as compared to Ultrix UNIX implementation</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>ExOS: Extensibility</h1>
+          <ul>
+            <li>Remote Procedure Call &mdash; server managed registers</li>
+            <li>Page table structures &mdash; inverted page tables</li>
+            <li>Schedulers &mdash; application level stride scheduling</li>
+            <li>Performance comparison between standard ExOS abstractions and
+            above mentioned custom ones</li>
+          </ul>
+        </section>
+
+
+        <section class="slide">
+          <header class="middle">
+            <h1>Extensibility, Safety and Performance in the SPIN operating
+              system </h1>
+            <h2>Bershad, Savage, et al.</h2>
+            <h3>Department of Computer Science and Engineering,
+              University of Washington</h3>
+          </header>
+        </section>
+
+        <section class="slide">
+          <h1>The People</h1>
+          <h2>Brian N. Bershad</h2>
+          <ul>
+            <li>UC Berkeley &rarr; U. Washington &rarr; CMU &rarr;
+            U. Washington</li>
+            <li>NSF Young Investigator Award &amp; SIGOPS Mark Weiser Award</li>
+            <li>Appliant Inc and Illumita</li>
+          </ul>
+          <h2>Stefan Savage</h2>
+          <ul>
+            <li>CMU &rarr; U. Washington &rarr; UC San Diego</li>
+            <li>Asta Networks, Rendition Networks, Netsift (Cisco)</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>Overview</h1>
+          <ul>
+            <li>OS that can be dynamically specialized to be safely meet the performance
+              and functionality requirements of applications
+            </li>
+            <li>Motivated by the need to support applicaions whose demands are poorly
+              matched by the OS implementation or interface
+            </li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>Design Techniques</h1>
+          <ul>
+            <li>Colocation: OS extensions are dynamically linked into the kernel virtual
+              address space
+            </li>
+            <li>Enforced modularity: extensions cannot accesss memory or execute
+              instruction unless explicitly given access via an interface
+            </li>
+            <li>Logical protetion domains: kernel namespaces containing code and exported
+              interfaces resolved by an in-kernel linker
+            </li>
+            <li>Dynamic call binding: extensions execute in response to system events
+            </li>
+          </ul>
+        </section>
+        
+        <section class="slide">
+          <h1>Related Work</h1><ul>
+            <li>Hydra: multi-level policies and capability based protection
+            </li>
+            <li>Microkernels exporting a small number of abstractions allowing
+              application-specific extensions but with high-communication overhead
+            </li>
+            <li>"Little languages" that allow interpreted code in the kernel
+            </li>
+            <li>Software fault isolation to safely link arbitrary code into the kernel's
+              address space
+            </li>
+          </ul>
+
+        </section>
+        
+        <section class="slide">
+          <h1>Protection Model</h1>
+          <ul><li>Capabilities are unforgetable references to system resources, implemented
+              by pointers checked at compile to prevent illegal access
+            </li>
+            <li>Protection domains define the set of accessible names available to an
+              execution context named by a capability and used to control dynamic
+              linking.
+            </li>
+            <li>Create, Resolve and Combine operations to manage domains
+            </li>
+          </ul>
+        </section>
+
+
+        <section class="slide">
+          <h1>Extension Model</h1>
+          <ul>
+            <li>Extensions defined in terms of services and handlers
+            </li>
+            <li>An event is a message that announces a change in the system state or a
+              request for services.
+            </li>
+            <li>An extension install a handler for the event via a central dispatcher
+            </li>
+            <li>Any procedure exported by an interface is also an event.
+            </li>
+            <li>Primary right to handle an event is restricted to the default
+              implementation that can arbitrate the installation of new handlers
+            </li>
+            <li>Guards may be used to further restrict access to events
+            </li>
+          </ul>
+        </section>
+        
+        <section class="slide">
+          <h1>Core Services</h1>
+          <ul>
+            <li>Extensible memory management &ndash; physical and virtual addresses and translations
+            </li>
+            <li>Extensible thread management &ndash; processor contexts called strands,
+              applications can provide their own thread model and schedulers
+            </li>
+          </ul>
+        </section>
+        
+        <section class="slide">
+          <h1>Contrast with Exokernels</h1>
+          <ul>
+            <li>SPIN uses Modula 3 features to protect the kernel and provide
+            protected communications</li>
+
+            <li>Aegis provides a small set of protected system calls for
+            extensions to use, but leaves all other details and interfaces
+            unspecified </li>
+
+            <li>Both systems support downloading code. ASH in Aegis uses code
+            inspection and sandboxing. SPIN leverages Modula 3 module
+            compartmentalization features.</li>
+          </ul>
+
+        </section>
+     </div> <!-- slides --> 
+      
+    </div> <!-- presentation --> 
+  </body> 
+</html>

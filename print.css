@@ -1,0 +1,93 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Helvetica Neue", "Trebuchet MS", Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px; top: 0px;
+}
+
+#presentation-counter {
+    display: none;
+}
+.slide {
+    width: 45%;
+    height: 260px;
+    float: left;
+    border: 2px solid #000000;
+    margin: 1.5%;
+    font-family: Georgia;
+    font-size: 0.6em;
+    line-height: 1.2em;
+}
+
+.slide h1 {
+    font-family: "Helvetica Neue";
+    font-size: 1.5em;
+    font-weight: normal;
+    margin: 1em 1em 2em 1em;
+}
+
+.slide h2 {
+    font-family: "Helvetica Neue";
+    font-size: 1em;
+    font-weight: normal;
+    margin: 1em 1em 1em 1em;
+}
+.slide ul {
+    width: 80%;
+    margin: auto;
+}
+
+.slide ul li {
+    margin-bottom:0.5em;
+}
+
+.slide blockquote {
+    font-style: italic;
+    text-align: justify;
+    margin: 10%;
+}
+
+.middle {
+    text-align: center;
+    display: block;
+    vertical-align: middle;
+    width: 90%;
+    margin: 20% auto auto auto;
+}
+
+
+.middle header {
+    margin: 0;
+}
+.middle h1 {
+    font-size: 2em;
+    line-height: 1.2em;
+    width: 90%;
+    margin: 1em auto 1em auto;
+}
+
+.middle h2 {
+    font-size: 0.5em;
+    margin: 1em auto 1em auto;
+}
+
+.middle h3 {
+    font-size: 0.3em;
+}
+
+.counter {
+    color: #999999;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    display: block;
+    font-size: 70%;
+}

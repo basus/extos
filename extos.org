@@ -1,0 +1,87 @@
+* Exokernel: Application-level Resource Management
+** Problem
+   - Traditional OS limit performance, flexibility and functionality of
+     applications by fixing the interface and implementation of OS abstractions
+   - Denies the advantages of domain-specific optimizations
+   - discourages changes to implementations of existing abstractions
+   - restricts the flexibility of application builders
+** Solution
+   Provide application level management of physical resources separating
+   resource protection from management
+   - Exports all hardware resources through a low-level interface to untrusted
+     "library operating systems"
+   - Library operating systems implement system objects and policies
+** The "End-to-end" argument strikes again
+   "The exokernel architecture is founded on and motivated by a single, simple
+   and old observation: the lower the level of a primitive, the more efficiently
+   it can be implemented, and the more latitude it grants to implementors of
+   higher-level abstractions".
+** Exokernel Design Principles
+   - Securely expose hardware
+   - Expose allocation
+   - Expose names
+   - Expose revocation
+** Exokernel Design Techniques
+   - Secure bindings allow libOS to securely bind to machine resources
+     (multiplexing memory and the network)
+   - Visible revocation allows libOS to participate in resource revocation
+   - Abort protocol to break secure bindings of uncooperative libOS by force
+   - Downloading code into the kernel for performance and bounding
+** Case studies
+   - Aegis: an exokernel supporting some system calls and "primitive operations"
+   - ExOS: A libOS implementing IPC, VM and remote comm at an application level
+** Extensibility
+   - Remote Procedure Call
+   - Page table structures
+   - Schedulers
+** Aegis: Processor allocation
+   - Time slices
+   - Environments: exceptions, interrupts, protected transfers and address
+     translations
+** Aegis: Exception dispatch
+   - Save 3 scratch
+* Extensibility, Safety and Performance in the SPIN operating system
+** Overview
+   - OS that can be dynamically specialized to be safely meet the performance
+     and functionality requirements of applications
+   - Motivated by the need to support applicaions whose demands are poorly
+     matched by the OS implementation or interface
+** Design Techniques
+   - Colocation: OS extensions are dynamically linked into the kernel virtual
+     address space
+   - Enforced modularity: extensions cannot accesss memory or execute
+     instruction unless explicitly given access via an interface
+   - Logical protetion domains: kernel namespaces containing code and exported
+     interfaces resolved by an in-kernel linker
+   - Dynamic call binding: extensions execute in response to system events
+** Related work
+   - Hydra: multi-level policies and capability based protection
+   - Microkernels exporting a small number of abstractions allowing
+     application-specific extensions but with high-communication overhead
+   - "Little languages" that allow interpreted code in the kernel
+   - Software fault isolation to safely link arbitrary code into the kernel's
+     address space
+** Protection model
+   - Capabilities are unforgetable references to system resources, implemented
+     by pointers checked at compile to prevent illegal access
+   - Protection domains define the set of accessible names available to an
+     execution context named by a capability and used to control dynamic
+     linking.
+   - Create, Resolve and Combine operations to manage domains
+** Extension model
+   - Extensions defined in terms of services and handlers
+   - An event is a message that announces a change in the system state or a
+     request for services.
+   - An extension install a handler for the event via a central dispatcher
+   - Any procedure exported by an interface is also an event.
+   - Primary right to handle an event is restricted to the default
+     implementation that can arbitrate the installation of new handlers
+   - Guards may be used to further restrict access to events
+** Core services
+   - Extensible memory management -- physical and virtual addresses and translations
+   - Extensible thread management -- processor contexts called strands,
+     applications can provide their own thread model and schedulers
+** Contrast with exokernels
+   - SPIN uses Modula 3 features to protect the kernel and provide protected communications
+   - Aegis provides a small set of protected system calls for extensions to use,
+     but remains all other details and interfaces unspecified
