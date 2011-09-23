@@ -373,7 +373,7 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
             </li>
           </ul>
         </section>
-        
+
         <section class="slide">
           <h1>Core Services</h1>
           <ul>
@@ -384,21 +384,19 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
             </li>
           </ul>
         </section>
-        
+
         <section class="slide">
-          <h1>Contrast with Exokernels</h1>
+          <h1>SPIN vs Aegis/ExOS</h1>
           <ul>
-            <li>SPIN uses Modula 3 features to protect the kernel and provide
-            protected communications</li>
+            <li>SPIN uses Modula 3 features to download extensions into the
+            kernel while protecting it.</li>
 
-            <li>Aegis provides a small set of protected system calls for
-            extensions to use, but leaves all other details and interfaces
-            unspecified </li>
+            <li>Aegis provides a small set of optimized primitives for
+            application ExOS to use.</li>
 
-            <li>Both systems support downloading code. ASH in Aegis uses code
-            inspection and sandboxing. SPIN leverages Modula 3 module
-            compartmentalization features.</li>
-          </ul>
+            <li>Both systems support downloading code but this is not a core
+            feature in Aegis/ExOS.</li>
+         </ul>
 
         </section>
      </div> <!-- slides --> 
