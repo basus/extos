@@ -111,29 +111,23 @@ Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
         </section>
 
         <section class="slide">
-          <h1>The Problem</h1>
+          <h1>Problems and Solutions</h1>
+          <h2>The Problem</h2>
           <ul>
-            <li>Traditional OS limit performance, flexibility and functionality of
-              applications by fixing the interface and implementation of OS abstractions</li>
+            <li>Fixing OS abstractions &rarr; limited performance, flexibility
+            and functionality</li>
             <li>Denies the advantages of domain-specific optimizations</li>
-            <li>discourages changes to implementations of existing
-              abstractions</li>
-            <li>restricts the flexibility of application builders</li>
-          </ul>
-        </section>
+            <li>Discourages changes to existing abstractions</li>
+            <li>Restricts the flexibility of application builders</li>
+         </ul>
 
-       <section class="slide">
-          <h1>The Solution</h1>
+          <h2>The Solution</h2>
           <ul>
-            <li>Provide application level management of physical resources separating
-              resource protection from management</li>
-            <li>Exports all hardware resources through a low-level interface to untrusted
-              "library operating systems"
-            </li>
-            <li>Library operating systems implement system objects and policies
-            </li>
-
-          </ul>
+            <li>Separate resource protection from management</li>
+            <li>Allow application level management of physical resources</li>
+            <li>Exports hardware resources through low-level interfaces </li>
+            <li>Library operating systems implement services &amp; policies</li>
+         </ul>
         </section>
 
         <section class="slide">
