@@ -1,0 +1,12 @@
+This is a presentation I made for my Advanced Systems class in the Fall of
+2011. It presents the work published in two papers on extensible operating
+systems --
+
+"Exokernel: An Operating System Architecture for Application-Level Resource
+Management" by Engler, Kaashoek and O'Toole
+
+"Extensibility, Safety and Performance in the SPIN operating system" by Bershad,
+Savage et al.
+
+The JavaScript code and CSS stylesheet is based on that of the HTML5 Rocks HTML5
+presentation.
